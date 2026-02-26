@@ -199,5 +199,14 @@
   "acne": "حب الشباب",
   "backPain": "ألم الظهر",
   "cravings": "رغبة شديدة في الأكل",
-  "permissionDenied": "تم رفض الإذن. يرجى تفعيل الوصول إلى الكاميرا أو الصور في الإعدادات."
+  "permissionDenied": "تم رفض الإذن. يرجى تفعيل الوصول إلى الكاميرا أو الصور في الإعدادات.",
+   "smartPredictions": "التنبؤات الذكية",
+  "futurePredictions": "التنبؤات المستقبلية",
+  "fillPastGaps": "ملء الفجوات السابقة",
+  "allMonths": "جميع الأشهر",
+  "protectPeriodDays": "حماية أيام الدورة",
+  "protectPeriodDaysDesc": "لا تقم بتغيير أي يوم سجلته كحيض",
+  "learnFromBody": "التعلم من إشارات جسمي",
+  "learnFromBodyDesc": "استخدام أنماط الطاقة والأعراض لتحسين التنبؤات (اختياري)",
+  "applyPredictions": "تطبيق التنبؤات"
   }

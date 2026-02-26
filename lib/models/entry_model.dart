@@ -36,6 +36,8 @@ class CycleEntry {
 
   @HiveField(10)
   String? overallFeeling; // "exhausted", "anxious", "okay", "euphoric", etc.
+  @HiveField(11)
+  bool? isPredicted;
 
   CycleEntry({
     required this.date,
@@ -49,5 +51,9 @@ class CycleEntry {
     this.energyLevel,
     this.painLevel,
     this.overallFeeling,
+    this.isPredicted = false, // default = user created/edited it
   });
+
+  // Helper getter to always return a non-null boolean
+  bool get isPredictedValue => isPredicted ?? false;
 }

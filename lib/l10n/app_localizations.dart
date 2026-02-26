@@ -922,6 +922,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Permission denied. Please enable camera or photo access in settings.'**
   String get permissionDenied;
+
+  /// No description provided for @smartPredictions.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Predictions'**
+  String get smartPredictions;
+
+  /// No description provided for @automaticPhasesMaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic Phases Maker'**
+  String get automaticPhasesMaker;
+
+  /// No description provided for @futurePredictions.
+  ///
+  /// In en, this message translates to:
+  /// **'Future predictions'**
+  String get futurePredictions;
+
+  /// No description provided for @fillPastGaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill past gaps'**
+  String get fillPastGaps;
+
+  /// No description provided for @allMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'All months'**
+  String get allMonths;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @months.
+  ///
+  /// In en, this message translates to:
+  /// **'months'**
+  String get months;
+
+  /// No description provided for @protectPeriodDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect my period days'**
+  String get protectPeriodDays;
+
+  /// No description provided for @protectPeriodDaysDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Never change any day I marked as menstruation'**
+  String get protectPeriodDaysDesc;
+
+  /// No description provided for @protectMenstruation.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect menstruation'**
+  String get protectMenstruation;
+
+  /// No description provided for @protectMenstruationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Never overwrite days you marked as period'**
+  String get protectMenstruationSubtitle;
+
+  /// No description provided for @learnFromBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn from my body signals'**
+  String get learnFromBody;
+
+  /// No description provided for @learnFromBodyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use energy and symptom patterns to improve predictions (optional)'**
+  String get learnFromBodyDesc;
+
+  /// No description provided for @learnFromBodySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust predictions based on your symptom patterns'**
+  String get learnFromBodySubtitle;
+
+  /// No description provided for @applyPredictions.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Predictions'**
+  String get applyPredictions;
+
+  /// No description provided for @phasesApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Phases applied ❤️'**
+  String get phasesApplied;
+
+  /// No description provided for @undo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// No description provided for @undoSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo successful'**
+  String get undoSuccessful;
+
+  /// No description provided for @noPeriodDataYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No period data yet'**
+  String get noPeriodDataYet;
+
+  /// No description provided for @periodLengthDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Period length (days)'**
+  String get periodLengthDays;
+
+  /// No description provided for @cycleLengthDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycle length (days)'**
+  String get cycleLengthDays;
+
+  /// No description provided for @lastPeriodDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Last period date'**
+  String get lastPeriodDate;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get selectDate;
+
+  /// No description provided for @preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
+  /// No description provided for @previewDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Predictions will be shown with lighter colors'**
+  String get previewDescription;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

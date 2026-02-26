@@ -421,4 +421,79 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get permissionDenied => 'تم رفض الإذن. يرجى تفعيل الوصول إلى الكاميرا أو الصور في الإعدادات.';
+
+  @override
+  String get smartPredictions => 'التنبؤات الذكية';
+
+  @override
+  String get automaticPhasesMaker => 'Automatic Phases Maker';
+
+  @override
+  String get futurePredictions => 'التنبؤات المستقبلية';
+
+  @override
+  String get fillPastGaps => 'ملء الفجوات السابقة';
+
+  @override
+  String get allMonths => 'جميع الأشهر';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get months => 'months';
+
+  @override
+  String get protectPeriodDays => 'حماية أيام الدورة';
+
+  @override
+  String get protectPeriodDaysDesc => 'لا تقم بتغيير أي يوم سجلته كحيض';
+
+  @override
+  String get protectMenstruation => 'Protect menstruation';
+
+  @override
+  String get protectMenstruationSubtitle => 'Never overwrite days you marked as period';
+
+  @override
+  String get learnFromBody => 'التعلم من إشارات جسمي';
+
+  @override
+  String get learnFromBodyDesc => 'استخدام أنماط الطاقة والأعراض لتحسين التنبؤات (اختياري)';
+
+  @override
+  String get learnFromBodySubtitle => 'Adjust predictions based on your symptom patterns';
+
+  @override
+  String get applyPredictions => 'تطبيق التنبؤات';
+
+  @override
+  String get phasesApplied => 'Phases applied ❤️';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get undoSuccessful => 'Undo successful';
+
+  @override
+  String get noPeriodDataYet => 'No period data yet';
+
+  @override
+  String get periodLengthDays => 'Period length (days)';
+
+  @override
+  String get cycleLengthDays => 'Cycle length (days)';
+
+  @override
+  String get lastPeriodDate => 'Last period date';
+
+  @override
+  String get selectDate => 'Select date';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String get previewDescription => 'Predictions will be shown with lighter colors';
 }

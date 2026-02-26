@@ -421,4 +421,79 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get permissionDenied => 'Permission denied. Please enable camera or photo access in settings.';
+
+  @override
+  String get smartPredictions => 'Smart Predictions';
+
+  @override
+  String get automaticPhasesMaker => 'Automatic Phases Maker';
+
+  @override
+  String get futurePredictions => 'Future predictions';
+
+  @override
+  String get fillPastGaps => 'Fill past gaps';
+
+  @override
+  String get allMonths => 'All months';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get months => 'months';
+
+  @override
+  String get protectPeriodDays => 'Protect my period days';
+
+  @override
+  String get protectPeriodDaysDesc => 'Never change any day I marked as menstruation';
+
+  @override
+  String get protectMenstruation => 'Protect menstruation';
+
+  @override
+  String get protectMenstruationSubtitle => 'Never overwrite days you marked as period';
+
+  @override
+  String get learnFromBody => 'Learn from my body signals';
+
+  @override
+  String get learnFromBodyDesc => 'Use energy and symptom patterns to improve predictions (optional)';
+
+  @override
+  String get learnFromBodySubtitle => 'Adjust predictions based on your symptom patterns';
+
+  @override
+  String get applyPredictions => 'Apply Predictions';
+
+  @override
+  String get phasesApplied => 'Phases applied ❤️';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get undoSuccessful => 'Undo successful';
+
+  @override
+  String get noPeriodDataYet => 'No period data yet';
+
+  @override
+  String get periodLengthDays => 'Period length (days)';
+
+  @override
+  String get cycleLengthDays => 'Cycle length (days)';
+
+  @override
+  String get lastPeriodDate => 'Last period date';
+
+  @override
+  String get selectDate => 'Select date';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String get previewDescription => 'Predictions will be shown with lighter colors';
 }

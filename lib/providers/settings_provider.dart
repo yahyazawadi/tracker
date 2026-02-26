@@ -116,32 +116,6 @@ class AppSettingsProvider extends ChangeNotifier {
       _expansionStates = Map<String, bool>.from(_defaultExpansionStates);
     }
 
-    // Load flow options
-    final savedFlows = _prefs.getString('flowOptions');
-    if (savedFlows != null) {
-      try {
-        final decoded = jsonDecode(savedFlows);
-        if (decoded is List) {
-          _flowOptions = List<String>.from(decoded);
-        }
-      } catch (_) {
-        // Keep defaults
-      }
-    }
-
-    // Load symptom options
-    final savedSymptoms = _prefs.getString('symptomOptions');
-    if (savedSymptoms != null) {
-      try {
-        final decoded = jsonDecode(savedSymptoms);
-        if (decoded is List) {
-          _symptomOptions = List<String>.from(decoded);
-        }
-      } catch (_) {
-        // Keep defaults
-      }
-    }
-
     notifyListeners();
   }
 
@@ -206,8 +180,6 @@ class AppSettingsProvider extends ChangeNotifier {
       _prefs.remove('themeScheme'),
       _prefs.remove('weekendDays'),
       _prefs.remove('expansion_states'),
-      _prefs.remove('flowOptions'),
-      _prefs.remove('symptomOptions'),
     ]);
     _loadSettings();
   }

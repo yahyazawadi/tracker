@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:tracker/l10n/app_localizations.dart';
 import 'package:tracker/providers/cycle_provider.dart';
-import 'package:tracker/providers/settings_provider.dart';
 import 'package:tracker/models/entry_model.dart';
 
 class EntryScreen extends StatefulWidget {
@@ -31,7 +30,6 @@ class EntryScreen extends StatefulWidget {
 class _EntryScreenState extends State<EntryScreen> {
   late CycleProvider _provider;
   late AppLocalizations t;
-  late AppSettingsProvider _settingsProvider;
 
   // Form state
   String? _phase;
@@ -50,6 +48,20 @@ class _EntryScreenState extends State<EntryScreen> {
 
   bool get _isEditing => _existingEntry != null;
 
+  // Common symptoms (add to .arb later)
+  final List<String> _symptomList = [
+    'cramps',
+    'bloating',
+    'headache',
+    'breastTenderness',
+    'fatigue',
+    'nausea',
+    'moodSwings',
+    'acne',
+    'backPain',
+    'cravings',
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -60,10 +72,6 @@ class _EntryScreenState extends State<EntryScreen> {
     super.didChangeDependencies();
     t = AppLocalizations.of(context)!;
     _provider = Provider.of<CycleProvider>(context, listen: false);
-    _settingsProvider = Provider.of<AppSettingsProvider>(
-      context,
-      listen: false,
-    );
 
     // Always load from Provider (most reliable way)
     _existingEntry = _provider.getEntry(widget.selectedDate);
@@ -137,7 +145,6 @@ class _EntryScreenState extends State<EntryScreen> {
       symptoms: Map.from(_symptoms),
       photoPaths: List.from(_photoPaths),
       overallFeeling: null,
-      isPredicted: false, // 👈 ADD THIS LINE
     );
 
     _provider.addOrUpdateEntry(widget.selectedDate, entry);
@@ -366,12 +373,23 @@ class _EntryScreenState extends State<EntryScreen> {
                 color: colorScheme.onSurfaceVariant,
               ),
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 28),
             _buildLivePhasePreview(),
-            const SizedBox(height: 25),
+            const SizedBox(height: 40),
             _buildSectionTitle(t.phase),
             _buildPhaseSelector(),
-
+            const SizedBox(height: 40),
+            _buildSectionTitle(t.flow),
+            _buildFlowChips(),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _flowDescController,
+              decoration: InputDecoration(
+                labelText: t.flowDescription,
+                border: const OutlineInputBorder(),
+              ),
+              maxLines: 2,
+            ),
             const SizedBox(height: 40),
             _buildSectionTitle(t.mood), // ← restored
             _buildMoodSelector(),
@@ -382,11 +400,6 @@ class _EntryScreenState extends State<EntryScreen> {
             _buildSectionTitle(t.pain), // ← restored
             _buildPainSelector(),
             const SizedBox(height: 40),
-
-            _buildSectionTitle(t.flow),
-            _buildFlowChips(),
-            const SizedBox(height: 40),
-
             _buildSectionTitle(t.symptoms),
             _buildSymptomsChips(),
             const SizedBox(height: 40),
@@ -518,7 +531,7 @@ class _EntryScreenState extends State<EntryScreen> {
               setState(() => _phase = phases[i]);
             },
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 170),
+              duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
               decoration: BoxDecoration(
                 color: _phase == phases[i]
@@ -526,7 +539,7 @@ class _EntryScreenState extends State<EntryScreen> {
                     : Colors.transparent,
                 border: Border.all(
                   color: _provider.getPhaseColor(phases[i]),
-                  width: _phase == phases[i] ? 3 : 1,
+                  width: _phase == phases[i] ? 0 : 2,
                 ),
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -551,7 +564,7 @@ class _EntryScreenState extends State<EntryScreen> {
               color: _phase == null ? Colors.grey[400] : Colors.transparent,
               border: Border.all(
                 color: Colors.grey[400]!,
-                width: _phase == null ? 3 : 1,
+                width: _phase == null ? 0 : 2,
               ),
               borderRadius: BorderRadius.circular(16),
             ),
@@ -564,29 +577,24 @@ class _EntryScreenState extends State<EntryScreen> {
 
   // Flow Chips
   Widget _buildFlowChips() {
-    final flows = _settingsProvider.flowOptions;
+    final flows = ['light', 'medium', 'heavy', 'spotting'];
+    final labels = [t.flowLight, t.flowMedium, t.flowHeavy, t.flowSpotting];
 
     return Wrap(
       spacing: 10,
       runSpacing: 10,
       children: [
-        ...flows.map((flow) {
-          final label = flow[0].toUpperCase() + flow.substring(1);
-          return InputChip(
-            label: Text(label),
-            selected: _flowIntensity == flow,
-            onSelected: (_) => setState(() => _flowIntensity = flow),
-            onDeleted: () => _settingsProvider.removeFlowOption(flow),
-          );
-        }).toList(),
-
-        // + Add button (نفس الحجم)
-        InputChip(
-          label: const Text(
-            '+',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        for (int i = 0; i < flows.length; i++)
+          FilterChip(
+            label: Text(labels[i]),
+            selected: _flowIntensity == flows[i],
+            onSelected: (_) => setState(() => _flowIntensity = flows[i]),
+            selectedColor: Colors.pink.withOpacity(0.2),
           ),
-          onSelected: (_) => _showAddFlowDialog(),
+        FilterChip(
+          label: Text(t.none),
+          selected: _flowIntensity == null,
+          onSelected: (_) => setState(() => _flowIntensity = null),
         ),
       ],
     );
@@ -639,31 +647,17 @@ class _EntryScreenState extends State<EntryScreen> {
 
   // Symptoms Chips (multi)
   Widget _buildSymptomsChips() {
-    final symptoms = _settingsProvider.symptomOptions;
-
     return Wrap(
       spacing: 8,
       runSpacing: 8,
-      children: [
-        ...symptoms.map((key) {
-          final selected = _symptoms[key] ?? false;
-          return InputChip(
-            label: Text(key),
-            selected: selected,
-            onSelected: (val) => setState(() => _symptoms[key] = val),
-            onDeleted: () => _settingsProvider.removeSymptomOption(key),
-          );
-        }).toList(),
-
-        // + Add button (نفس الحجم)
-        InputChip(
-          label: const Text(
-            '+',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          onSelected: (_) => _showAddSymptomDialog(),
-        ),
-      ],
+      children: _symptomList.map((key) {
+        final selected = _symptoms[key] ?? false;
+        return FilterChip(
+          label: Text(key), // Replace with t.symptomCramps etc. later
+          selected: selected,
+          onSelected: (val) => setState(() => _symptoms[key] = val),
+        );
+      }).toList(),
     );
   }
 
@@ -775,54 +769,6 @@ class _EntryScreenState extends State<EntryScreen> {
               Navigator.pop(context);
             },
             child: Text(t.delete, style: const TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showAddFlowDialog() {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Add new flow option'),
-        content: TextField(controller: controller, autofocus: true),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(t.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              _settingsProvider.addFlowOption(controller.text);
-              Navigator.pop(ctx);
-            },
-            child: const Text('Add'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showAddSymptomDialog() {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Add new symptom'),
-        content: TextField(controller: controller, autofocus: true),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(t.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              _settingsProvider.addSymptomOption(controller.text);
-              Navigator.pop(ctx);
-            },
-            child: const Text('Add'),
           ),
         ],
       ),

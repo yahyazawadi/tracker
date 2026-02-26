@@ -958,8 +958,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: border-days
-      resolved-ref: "42bd1c9406ec3bcb886774667b840eb6a198e476"
+      ref: dotted-border
+      resolved-ref: "2d2c77c419ea7799005a1097f775dacf6f2979e8"
       url: "https://github.com/yahyazawadi/table_calendar.git"
     source: git
     version: "3.2.0"

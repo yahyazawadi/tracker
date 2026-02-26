@@ -28,13 +28,14 @@ class CycleEntryAdapter extends TypeAdapter<CycleEntry> {
       energyLevel: fields[8] as int?,
       painLevel: fields[9] as int?,
       overallFeeling: fields[10] as String?,
+      isPredicted: fields[11] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, CycleEntry obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.date)
       ..writeByte(1)
@@ -56,7 +57,9 @@ class CycleEntryAdapter extends TypeAdapter<CycleEntry> {
       ..writeByte(9)
       ..write(obj.painLevel)
       ..writeByte(10)
-      ..write(obj.overallFeeling);
+      ..write(obj.overallFeeling)
+      ..writeByte(11)
+      ..write(obj.isPredicted);
   }
 
   @override

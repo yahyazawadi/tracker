@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tracker/l10n/app_localizations.dart';
 import 'package:tracker/providers/cycle_provider.dart';
+import 'package:tracker/screens/automatic_phases_maker_screen.dart';
 import 'package:tracker/screens/calendar/phase_calendar.dart';
 import 'package:tracker/screens/entries/entry_screen.dart'; // Your entry form
 import './stat_item.dart'; // Separate widget
@@ -490,18 +491,27 @@ class _CalendarScreenState extends State<CalendarScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  EntryScreen(selectedDate: _selectedDay ?? DateTime.now()),
-            ),
-          );
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.auto_awesome), // magic wand icon
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (_) => AutomaticPhasesMakerScreen()),
+      //     );
+      //   },
+      // ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.add),
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) =>
+      //             EntryScreen(selectedDate: _selectedDay ?? DateTime.now()),
+      //       ),
+      //     );
+      //   },
+      // ),
     );
   }
 }
