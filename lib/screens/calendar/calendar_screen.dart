@@ -491,15 +491,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: const Icon(Icons.auto_awesome), // magic wand icon
-      //   onPressed: () {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(builder: (_) => AutomaticPhasesMakerScreen()),
-      //     );
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.auto_awesome), // magic wand icon
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => AutomaticPhasesMakerScreen()),
+          );
+        },
+      ),
       // floatingActionButton: FloatingActionButton(
       //   child: const Icon(Icons.add),
       //   onPressed: () {

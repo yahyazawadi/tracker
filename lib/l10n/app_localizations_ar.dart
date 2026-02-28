@@ -496,4 +496,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get previewDescription => 'Predictions will be shown with lighter colors';
+
+  @override
+  String get predictionsApplied => 'طبقت التنبؤات';
+
+  @override
+  String get learnFromBodySignals => 'تعلم بناء على إشارات جسمي';
+
+  @override
+  String get autoPhases => 'فترات تلقائية';
+
+  @override
+  String get noPeriodDetected => 'لم يتم العثور على بيانات الدورة';
+
+  @override
+  String get lastPeriodStart => 'تاريخ بداية آخر دورة';
+
+  @override
+  String get previewChanges => 'تفقد التعديلات';
+
+  @override
+  String get futureCleared => 'تم حذف التنبؤات المستقبلية بنجاح';
+
+  @override
+  String get clearFuturePredictions => 'حذف التنبؤات المستقبلية';
+
+  @override
+  String get futurePredictionsHelp => 'كم عدد الأشهر المراد التنبؤ بها مسبقاً';
+
+  @override
+  String get fillPastGapsHelp => 'ملء الأشهر الماضية بالمراحل المتنبأ بها (مفيد إذا بدأت للتو في التتبع)';
+
+  @override
+  String get wantToUpdatePredictions => 'هل تريد تحديث التنبؤات المستقبلية الآن؟';
+
+  @override
+  String get rememberMyChoice => 'نعم، تذكر اختياري';
+
+  @override
+  String get yes => 'نعم';
+
+  @override
+  String get no => 'لا';
 }

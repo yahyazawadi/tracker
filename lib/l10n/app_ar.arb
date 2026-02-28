@@ -208,5 +208,51 @@
   "protectPeriodDaysDesc": "لا تقم بتغيير أي يوم سجلته كحيض",
   "learnFromBody": "التعلم من إشارات جسمي",
   "learnFromBodyDesc": "استخدام أنماط الطاقة والأعراض لتحسين التنبؤات (اختياري)",
-  "applyPredictions": "تطبيق التنبؤات"
+  "applyPredictions": "تطبيق التنبؤات",
+  "predictionsApplied":"طبقت التنبؤات",
+   "learnFromBodySignals":"تعلم بناء على إشارات جسمي",
+    "autoPhases":"فترات تلقائية",
+  "noPeriodDetected": "لم يتم العثور على بيانات الدورة",
+  "lastPeriodStart": "تاريخ بداية آخر دورة",
+  "previewChanges" : "تفقد التعديلات",
+  
+  "futureCleared": "تم حذف التنبؤات المستقبلية بنجاح",
+  "@futureCleared": {
+    "description": "SnackBar message when future predictions are cleared"
+  },
+  
+  "clearFuturePredictions": "حذف التنبؤات المستقبلية",
+  "@clearFuturePredictions": {
+    "description": "Button text to clear all future (predicted) phase entries"
+  },
+  
+  "futurePredictionsHelp": "كم عدد الأشهر المراد التنبؤ بها مسبقاً",
+  "@futurePredictionsHelp": {
+    "description": "Help text for the future predictions slider"
+  },
+  
+  "fillPastGapsHelp": "ملء الأشهر الماضية بالمراحل المتنبأ بها (مفيد إذا بدأت للتو في التتبع)",
+  "@fillPastGapsHelp": {
+    "description": "Help text for the fill past gaps slider"
+  },
+  
+  "wantToUpdatePredictions": "هل تريد تحديث التنبؤات المستقبلية الآن؟",
+  "@wantToUpdatePredictions": {
+    "description": "Dialog title asking if user wants to auto-predict phases after saving entry"
+  },
+  
+  "rememberMyChoice": "نعم، تذكر اختياري",
+  "@rememberMyChoice": {
+    "description": "Checkbox label in the auto-predict reminder dialog"
+  },
+  
+  "yes": "نعم",
+  "@yes": {
+    "description": "Affirmative button text in dialogs"
+  },
+  
+  "no": "لا",
+  "@no": {
+    "description": "Negative button text in dialogs"
   }
+}

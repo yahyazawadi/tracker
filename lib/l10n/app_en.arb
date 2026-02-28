@@ -224,5 +224,52 @@
   "lastPeriodDate": "Last period date",
   "selectDate": "Select date",
   "preview": "Preview",
-  "previewDescription": "Predictions will be shown with lighter colors"
+  "previewDescription": "Predictions will be shown with lighter colors",
+  "predictionsApplied":"Predictions Applied",
+   "learnFromBodySignals":"learn from body signals",
+    "autoPhases":"auto phases",
+  "noPeriodDetected": "No period detected",
+  "lastPeriodStart": "Last period start",
+    "previewChanges" : "preview changes",
+  
+  "futureCleared": "Future predictions cleared successfully",
+  "@futureCleared": {
+    "description": "SnackBar message when future predictions are cleared"
+  },
+  
+  "clearFuturePredictions": "Clear Future Predictions",
+  "@clearFuturePredictions": {
+    "description": "Button text to clear all future (predicted) phase entries"
+  },
+  
+  "futurePredictionsHelp": "How many months ahead to predict your cycle",
+  "@futurePredictionsHelp": {
+    "description": "Help text for the future predictions slider"
+  },
+  
+  "fillPastGapsHelp": "Fill in past months with predicted phases (useful if you just started tracking)",
+  "@fillPastGapsHelp": {
+    "description": "Help text for the fill past gaps slider"
+  },
+  
+  "wantToUpdatePredictions": "Want me to update future predictions now?",
+  "@wantToUpdatePredictions": {
+    "description": "Dialog title asking if user wants to auto-predict phases after saving entry"
+  },
+  
+  "rememberMyChoice": "Yes, remember my choice",
+  "@rememberMyChoice": {
+    "description": "Checkbox label in the auto-predict reminder dialog"
+  },
+  
+  "yes": "Yes",
+  "@yes": {
+    "description": "Affirmative button text in dialogs"
+  },
+  
+  "no": "No",
+  "@no": {
+    "description": "Negative button text in dialogs"
   }
+
+}

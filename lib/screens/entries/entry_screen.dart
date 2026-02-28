@@ -142,6 +142,8 @@ class _EntryScreenState extends State<EntryScreen> {
 
     _provider.addOrUpdateEntry(widget.selectedDate, entry);
 
+    _maybeAutoPredictAfterSave(entry);
+
     if (mounted) {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -150,6 +152,75 @@ class _EntryScreenState extends State<EntryScreen> {
           behavior: SnackBarBehavior.floating,
         ),
       );
+    }
+  }
+
+  // ==================== AUTO PREDICT ====================
+  void _maybeAutoPredictAfterSave(CycleEntry entry) {
+    if (entry.phase == 'menstruation' || entry.flowIntensity != null) {
+      final autoPredictPref = _settingsProvider.autoPredictAfterSave;
+
+      if (autoPredictPref == null) {
+        // Ask the user once
+        bool rememberChoice = true; // default checked
+
+        showDialog(
+          context: context,
+          builder: (ctx) => StatefulBuilder(
+            builder: (ctx, setDialogState) => AlertDialog(
+              title: Text(t.wantToUpdatePredictions),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CheckboxListTile(
+                    value: rememberChoice,
+                    onChanged: (v) => setDialogState(() => rememberChoice = v!),
+                    title: Text(t.rememberMyChoice),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    if (rememberChoice) {
+                      _settingsProvider.autoPredictAfterSave = false;
+                    }
+                    Navigator.pop(ctx);
+                  },
+                  child: Text(t.no),
+                ),
+                TextButton(
+                  onPressed: () {
+                    if (rememberChoice) {
+                      _settingsProvider.autoPredictAfterSave = true;
+                    }
+                    _provider.predictAndApplyPhases(
+                      futureMonths: 6,
+                      pastMonths: 6,
+                      protectMenstruation: true,
+                      learnFromBody:
+                          _settingsProvider.phasesMakerOpensCount >= 3,
+                      settings: _settingsProvider,
+                    );
+                    Navigator.pop(ctx);
+                  },
+                  child: Text(t.yes),
+                ),
+              ],
+            ),
+          ),
+        );
+      } else if (autoPredictPref == true) {
+        // User previously said yes → auto-predict silently
+        _provider.predictAndApplyPhases(
+          futureMonths: 6,
+          pastMonths: 6,
+          protectMenstruation: true,
+          learnFromBody: _settingsProvider.phasesMakerOpensCount >= 3,
+          settings: _settingsProvider,
+        );
+      }
+      // If autoPredictPref == false, user said no → do nothing
     }
   }
 

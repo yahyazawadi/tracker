@@ -35,6 +35,30 @@ class AppSettingsProvider extends ChangeNotifier {
   AppSettingsProvider(this._prefs) {
     _loadSettings();
   }
+  // ── Phases Maker Opens Counter (for "Learn from body" default ON after 3rd use)
+  int _phasesMakerOpensCount = 0;
+  int get phasesMakerOpensCount => _phasesMakerOpensCount;
+
+  void incrementPhasesMakerOpens() {
+    _phasesMakerOpensCount++;
+    _prefs.setInt('phasesMakerOpensCount', _phasesMakerOpensCount);
+    notifyListeners();
+  }
+
+  // In _loadSettings() — add this line at the end:
+  // _phasesMakerOpensCount = _prefs.getInt('phasesMakerOpensCount') ?? 0;
+
+  // ── Auto Predict After Save (ask once, then remember choice)
+  bool? _autoPredictAfterSave;
+  bool? get autoPredictAfterSave => _autoPredictAfterSave;
+
+  set autoPredictAfterSave(bool? value) {
+    _autoPredictAfterSave = value;
+    if (value != null) {
+      _prefs.setBool('autoPredictAfterSave', value);
+    }
+    notifyListeners();
+  }
 
   // ── Theme display names map ────────────────────────────────────────────────
   static String getThemeDisplayName(BuildContext context, FlexScheme scheme) {
@@ -114,6 +138,12 @@ class AppSettingsProvider extends ChangeNotifier {
       }
     } else {
       _expansionStates = Map<String, bool>.from(_defaultExpansionStates);
+    }
+    _phasesMakerOpensCount = _prefs.getInt('phasesMakerOpensCount') ?? 0;
+
+    // Load autoPredictAfterSave (null = not set, user hasn't chosen yet)
+    if (_prefs.containsKey('autoPredictAfterSave')) {
+      _autoPredictAfterSave = _prefs.getBool('autoPredictAfterSave');
     }
 
     notifyListeners();

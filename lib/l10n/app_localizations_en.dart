@@ -496,4 +496,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get previewDescription => 'Predictions will be shown with lighter colors';
+
+  @override
+  String get predictionsApplied => 'Predictions Applied';
+
+  @override
+  String get learnFromBodySignals => 'learn from body signals';
+
+  @override
+  String get autoPhases => 'auto phases';
+
+  @override
+  String get noPeriodDetected => 'No period detected';
+
+  @override
+  String get lastPeriodStart => 'Last period start';
+
+  @override
+  String get previewChanges => 'preview changes';
+
+  @override
+  String get futureCleared => 'Future predictions cleared successfully';
+
+  @override
+  String get clearFuturePredictions => 'Clear Future Predictions';
+
+  @override
+  String get futurePredictionsHelp => 'How many months ahead to predict your cycle';
+
+  @override
+  String get fillPastGapsHelp => 'Fill in past months with predicted phases (useful if you just started tracking)';
+
+  @override
+  String get wantToUpdatePredictions => 'Want me to update future predictions now?';
+
+  @override
+  String get rememberMyChoice => 'Yes, remember my choice';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
 }

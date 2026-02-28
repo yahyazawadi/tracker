@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:tracker/providers/settings_provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -30,6 +31,7 @@ class EntryScreen extends StatefulWidget {
 class _EntryScreenState extends State<EntryScreen> {
   late CycleProvider _provider;
   late AppLocalizations t;
+  late AppSettingsProvider _settingsProvider;
 
   // Form state
   String? _phase;
@@ -72,6 +74,10 @@ class _EntryScreenState extends State<EntryScreen> {
     super.didChangeDependencies();
     t = AppLocalizations.of(context)!;
     _provider = Provider.of<CycleProvider>(context, listen: false);
+    _settingsProvider = Provider.of<AppSettingsProvider>(
+      context,
+      listen: false,
+    );
 
     // Always load from Provider (most reliable way)
     _existingEntry = _provider.getEntry(widget.selectedDate);
@@ -149,6 +155,8 @@ class _EntryScreenState extends State<EntryScreen> {
 
     _provider.addOrUpdateEntry(widget.selectedDate, entry);
 
+    _maybeAutoPredictAfterSave(entry);
+
     if (mounted) {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -157,6 +165,80 @@ class _EntryScreenState extends State<EntryScreen> {
           behavior: SnackBarBehavior.floating,
         ),
       );
+    }
+  }
+
+  void _maybeAutoPredictAfterSave(CycleEntry entry) {
+    if (entry.phase == 'menstruation' || entry.flowIntensity != null) {
+      final settings = context.read<AppSettingsProvider>();
+      final autoPredictPref = settings.autoPredictAfterSave;
+
+      if (autoPredictPref == null) {
+        // Ask the user once
+        bool rememberChoice = true; // default checked
+
+        showDialog(
+          context: context,
+          builder: (ctx) => StatefulBuilder(
+            builder: (ctx, setDialogState) => AlertDialog(
+              title: const Text("Update future predictions?"),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    "Want me to automatically update your cycle predictions when you log a period?",
+                  ),
+                  const SizedBox(height: 12),
+                  CheckboxListTile(
+                    value: rememberChoice,
+                    onChanged: (v) => setDialogState(() => rememberChoice = v!),
+                    title: const Text("Remember my choice"),
+                    dense: true,
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    if (rememberChoice) {
+                      settings.autoPredictAfterSave = false;
+                    }
+                    Navigator.pop(ctx);
+                  },
+                  child: const Text("No"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    if (rememberChoice) {
+                      settings.autoPredictAfterSave = true;
+                    }
+                    _provider.predictAndApplyPhases(
+                      futureMonths: 6,
+                      pastMonths: 6,
+                      protectMenstruation: true,
+                      learnFromBody: settings.phasesMakerOpensCount >= 3,
+                      settings: settings,
+                    );
+                    Navigator.pop(ctx);
+                  },
+                  child: const Text("Yes"),
+                ),
+              ],
+            ),
+          ),
+        );
+      } else if (autoPredictPref == true) {
+        // User previously said yes → auto-predict silently
+        final settings = context.read<AppSettingsProvider>();
+        _provider.predictAndApplyPhases(
+          futureMonths: 6,
+          pastMonths: 6,
+          protectMenstruation: true,
+          learnFromBody: settings.phasesMakerOpensCount >= 3,
+          settings: settings,
+        );
+      }
+      // If autoPredictPref == false, user said no → do nothing
     }
   }
 

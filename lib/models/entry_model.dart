@@ -53,6 +53,21 @@ class CycleEntry {
     this.overallFeeling,
     this.isPredicted = false, // default = user created/edited it
   });
+  CycleEntry copyWith({String? phase, bool? isPredicted}) {
+    return CycleEntry(
+      date: date,
+      phase: phase ?? this.phase,
+      flowIntensity: flowIntensity,
+      flowDescription: flowDescription,
+      moodRating: moodRating,
+      energyLevel: energyLevel,
+      painLevel: painLevel,
+      notes: notes,
+      symptoms: symptoms,
+      photoPaths: photoPaths,
+      isPredicted: isPredicted ?? this.isPredicted,
+    );
+  }
 
   // Helper getter to always return a non-null boolean
   bool get isPredictedValue => isPredicted ?? false;

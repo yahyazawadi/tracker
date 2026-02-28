@@ -1072,6 +1072,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Predictions will be shown with lighter colors'**
   String get previewDescription;
+
+  /// No description provided for @predictionsApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Predictions Applied'**
+  String get predictionsApplied;
+
+  /// No description provided for @learnFromBodySignals.
+  ///
+  /// In en, this message translates to:
+  /// **'learn from body signals'**
+  String get learnFromBodySignals;
+
+  /// No description provided for @autoPhases.
+  ///
+  /// In en, this message translates to:
+  /// **'auto phases'**
+  String get autoPhases;
+
+  /// No description provided for @noPeriodDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'No period detected'**
+  String get noPeriodDetected;
+
+  /// No description provided for @lastPeriodStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Last period start'**
+  String get lastPeriodStart;
+
+  /// No description provided for @previewChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'preview changes'**
+  String get previewChanges;
+
+  /// SnackBar message when future predictions are cleared
+  ///
+  /// In en, this message translates to:
+  /// **'Future predictions cleared successfully'**
+  String get futureCleared;
+
+  /// Button text to clear all future (predicted) phase entries
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Future Predictions'**
+  String get clearFuturePredictions;
+
+  /// Help text for the future predictions slider
+  ///
+  /// In en, this message translates to:
+  /// **'How many months ahead to predict your cycle'**
+  String get futurePredictionsHelp;
+
+  /// Help text for the fill past gaps slider
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in past months with predicted phases (useful if you just started tracking)'**
+  String get fillPastGapsHelp;
+
+  /// Dialog title asking if user wants to auto-predict phases after saving entry
+  ///
+  /// In en, this message translates to:
+  /// **'Want me to update future predictions now?'**
+  String get wantToUpdatePredictions;
+
+  /// Checkbox label in the auto-predict reminder dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, remember my choice'**
+  String get rememberMyChoice;
+
+  /// Affirmative button text in dialogs
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// Negative button text in dialogs
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
